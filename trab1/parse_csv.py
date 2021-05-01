@@ -10,15 +10,18 @@ import csv
 from datetime import date
 
 
-directorID = 0
-actorID = 0
+director_id = 0
+actor_id = 0
 
 # URI
 base = '<http://netflix-titles.com/'
 
 movie_subject = base + 'movie/' #+ id
 tv_series_subject = base + 'tv_series/' #+ id
+dir_subject = base + 'dir/' #+ director_id
+actor_subject = base + 'actor/' # + actor_id
 
+#tvshow preds
 type_pred = base + 'pred/type'
 title_pred = base + 'pred/title'
 directed_by_pred = base + 'pred/directed_by'
@@ -29,6 +32,10 @@ release_year_pred = base + 'pred/release_year'
 duration_pred = base + 'pred/duration'
 listed_in_pred = base + 'pred/listed_in'
 
+#director preds
+name_pred = base + 'pred/name'
+directed_pred = base + 'pred/directed'
+acted_in_pred = base + 'pred/acted_in'
 
 #dicts
 directors = {} # director -> [movies, tv_series]
@@ -115,6 +122,21 @@ with open('netflix_titles.csv') as csv_file:
                 output.write(tv_series_subject + row[0] + '> ' + duration_pred + '> ' + row[9] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
                 output.write(tv_series_subject + row[0] + '> ' + listed_in_pred+ '> ' + row[10] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+
+        #write directors -> directed -> [movies, tv shows]
+        for k in directors:
+            output.write(dir_subject+"act"+str(director_id) + '> ' + name_pred + '> '+ k + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+            for j in directors[k]:
+                output.write(dir_subject+"act"+str(director_id) + '> ' + directed_pred + '> '+ j + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+            director_id+=1
+
+        #write actors -> participated -> [movies, tv shows]
+        for k in actors:
+            output.write(actor_subject+"act"+str(actor_id) + '> ' + name_pred + '> '+ k + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+            for j in actors[k]:
+                output.write(actor_subject+"act"+str(actor_id) + '> ' + acted_in_pred + '> '+ j + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+            actor_id+=1
+
 
 
 '''
