@@ -42,13 +42,31 @@ with open('netflix_titles.csv') as csv_file:
             if(row[1]=='Movie'):
                 output.write(movie_subject + row[0] + '> ' + type_pred + '> '+ row[1] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
                 output.write(movie_subject + row[0] + '> ' + title_pred + '> ' + row[2] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                
                 if(row[3]==""):
                     row[3] = "unknown"
+                
                 output.write(movie_subject + row[0] + '> ' + directed_by_pred + '> ' + row[3] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
-                #falta guardar os directores
-
+                if row[3] in directors:
+                    directors[ row[3] ].append( row[0] )
+                else:
+                    directors[ row[3] ] = []
+                    directors[ row[3] ].append( row[0] )
+                    
                 output.write(movie_subject + row[0] + '> ' + cast_pred + '> ' + row[4] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
-                #falta guardar os actores
+                
+                acts = row[4].strip().split(",")
+                i = 0
+                while i < len(acts):
+                    acts[i] = acts[i].strip()
+                    i+=1
+                for act in acts:
+                    if act in actors:
+                        actors[ act ].append( row[0] )
+                    else:
+                        actors[ act ] = []
+                        actors[ act ].append( row[0] )
+
 
                 output.write(movie_subject + row[0] + '> ' + country_pred + '> ' + row[5] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
@@ -67,10 +85,26 @@ with open('netflix_titles.csv') as csv_file:
                 if(row[3]==""):
                     row[3] = "unknown"
                 output.write(tv_series_subject + row[0] + '> ' + directed_by_pred + '> ' + row[3] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
-                #falta guardar os directores
+                if row[3] in directors:
+                    directors[ row[3] ].append( row[0] )
+                else:
+                    directors[ row[3] ] = []
+                    directors[ row[3] ].append( row[0] )
 
+                
                 output.write(tv_series_subject + row[0] + '> ' + cast_pred + '> ' + row[4] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
-                #falta guardar os actores
+                acts = row[4].strip().split(",")
+                i = 0
+                while i < len(acts):
+                    acts[i] = acts[i].strip()
+                    i+=1
+                for act in acts:
+                    if act in actors:
+                        actors[ act ].append( row[0] )
+                    else:
+                        actors[ act ] = []
+                        actors[ act ].append( row[0] )
+
 
                 output.write(tv_series_subject + row[0] + '> ' + country_pred + '> ' + row[5] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
@@ -81,6 +115,16 @@ with open('netflix_titles.csv') as csv_file:
                 output.write(tv_series_subject + row[0] + '> ' + duration_pred + '> ' + row[9] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
                 output.write(tv_series_subject + row[0] + '> ' + listed_in_pred+ '> ' + row[10] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+
+
+'''
+for k in directors:
+    if k=='Rako Prijanto':
+        print(k,directors[k])
+
+for j in actors:
+    print(j, actors[j])
+'''
 
 output.close()
 
