@@ -46,21 +46,27 @@ with open('netflix_titles.csv') as csv_file:
         reader = csv.reader(csv_file, delimiter=',')
         next(reader)
         for row in reader:
+            k = 0
+            while k < len(row):
+                row[k] = row[k].replace('"', '')
+                row[k] = row[k].replace('\n', ' ')
+                k+=1
+            
             if(row[1]=='Movie'):
-                output.write(movie_subject + row[0] + '> ' + type_pred + '> '+ row[1] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
-                output.write(movie_subject + row[0] + '> ' + title_pred + '> ' + row[2] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(movie_subject + row[0] + '> ' + type_pred + '> "'+ row[1] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(movie_subject + row[0] + '> ' + title_pred + '> "' + row[2] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
                 
                 if(row[3]==""):
                     row[3] = "unknown"
                 
-                output.write(movie_subject + row[0] + '> ' + directed_by_pred + '> ' + row[3] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(movie_subject + row[0] + '> ' + directed_by_pred + '> "' + row[3] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
                 if row[3] in directors:
                     directors[ row[3] ].append( row[0] )
                 else:
                     directors[ row[3] ] = []
                     directors[ row[3] ].append( row[0] )
                     
-                output.write(movie_subject + row[0] + '> ' + cast_pred + '> ' + row[4] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(movie_subject + row[0] + '> ' + cast_pred + '> "' + row[4] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
                 
                 acts = row[4].strip().split(",")
                 i = 0
@@ -75,23 +81,23 @@ with open('netflix_titles.csv') as csv_file:
                         actors[ act ].append( row[0] )
 
 
-                output.write(movie_subject + row[0] + '> ' + country_pred + '> ' + row[5] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(movie_subject + row[0] + '> ' + country_pred + '> "' + row[5] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
-                output.write(movie_subject + row[0] + '> ' + date_added_pred + '> ' + row[6] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(movie_subject + row[0] + '> ' + date_added_pred + '> "' + row[6] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
-                output.write(movie_subject + row[0] + '> ' + release_year_pred+ '> ' + row[7] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(movie_subject + row[0] + '> ' + release_year_pred+ '> "' + row[7] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
-                output.write(movie_subject + row[0] + '> ' + duration_pred + '> ' + row[9] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(movie_subject + row[0] + '> ' + duration_pred + '> "' + row[9] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
-                output.write(movie_subject + row[0] + '> ' + listed_in_pred+ '> ' + row[10] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(movie_subject + row[0] + '> ' + listed_in_pred+ '> "' + row[10] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
             elif(row[1]=='TV Show'):
-                output.write(tv_series_subject + row[0] + '> ' + type_pred + '> ' + row[1] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
-                output.write(tv_series_subject + row[0] + '> ' + title_pred + '> ' + row[2] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(tv_series_subject + row[0] + '> ' + type_pred + '> "' + row[1] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(tv_series_subject + row[0] + '> ' + title_pred + '> "' + row[2] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
                 if(row[3]==""):
                     row[3] = "unknown"
-                output.write(tv_series_subject + row[0] + '> ' + directed_by_pred + '> ' + row[3] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(tv_series_subject + row[0] + '> ' + directed_by_pred + '> "' + row[3] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
                 if row[3] in directors:
                     directors[ row[3] ].append( row[0] )
                 else:
@@ -99,7 +105,7 @@ with open('netflix_titles.csv') as csv_file:
                     directors[ row[3] ].append( row[0] )
 
                 
-                output.write(tv_series_subject + row[0] + '> ' + cast_pred + '> ' + row[4] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(tv_series_subject + row[0] + '> ' + cast_pred + '> "' + row[4] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
                 acts = row[4].strip().split(",")
                 i = 0
                 while i < len(acts):
@@ -113,28 +119,28 @@ with open('netflix_titles.csv') as csv_file:
                         actors[ act ].append( row[0] )
 
 
-                output.write(tv_series_subject + row[0] + '> ' + country_pred + '> ' + row[5] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(tv_series_subject + row[0] + '> ' + country_pred + '> "' + row[5] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
-                output.write(tv_series_subject + row[0] + '> ' + date_added_pred + '> ' + row[6] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(tv_series_subject + row[0] + '> ' + date_added_pred + '> "' + row[6] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
-                output.write(tv_series_subject + row[0] + '> ' + release_year_pred+ '> ' + row[7] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(tv_series_subject + row[0] + '> ' + release_year_pred+ '> "' + row[7] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
-                output.write(tv_series_subject + row[0] + '> ' + duration_pred + '> ' + row[9] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(tv_series_subject + row[0] + '> ' + duration_pred + '> "' + row[9] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
-                output.write(tv_series_subject + row[0] + '> ' + listed_in_pred+ '> ' + row[10] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(tv_series_subject + row[0] + '> ' + listed_in_pred+ '> "' + row[10] + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
 
         #write directors -> directed -> [movies, tv shows]
         for k in directors:
-            output.write(dir_subject+"act"+str(director_id) + '> ' + name_pred + '> '+ k + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+            output.write(dir_subject+"dir"+str(director_id) + '> ' + name_pred + '> "'+ k + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
             for j in directors[k]:
-                output.write(dir_subject+"act"+str(director_id) + '> ' + directed_pred + '> '+ j + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(dir_subject+"dir"+str(director_id) + '> ' + directed_pred + '> "'+ j + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
             director_id+=1
 
         #write actors -> participated -> [movies, tv shows]
         for k in actors:
-            output.write(actor_subject+"act"+str(actor_id) + '> ' + name_pred + '> '+ k + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+            output.write(actor_subject+"act"+str(actor_id) + '> ' + name_pred + '> "'+ k + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
             for j in actors[k]:
-                output.write(actor_subject+"act"+str(actor_id) + '> ' + acted_in_pred + '> '+ j + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
+                output.write(actor_subject+"act"+str(actor_id) + '> ' + acted_in_pred + '> "'+ j + '"^^<http://www.w3.org/2001/XMLSchema#string> .\n')
             actor_id+=1
 
 
