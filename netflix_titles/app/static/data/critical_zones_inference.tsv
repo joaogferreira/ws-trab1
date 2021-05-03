@@ -1,0 +1,242 @@
+id	name	numbers	risk
+IRQ	Iraq	6004	Critical
+AFG	Afghanistan	3036	Critical
+IND	India	2001	High
+PAK	Pakistan	1699	High
+PHL	Philippines	1298	High
+NGA	Nigeria	1163	High
+SOM	Somalia	1059	High
+SYR	Syria	735	Medium
+YEM	Yemen	733	Medium
+TUR	Turkey	726	Medium
+EGY	Egypt	595	Medium
+LBY	Libya	513	Medium
+THA	Thailand	508	Medium
+NPL	Nepal	298	Medium
+COL	Colombia	250	Medium
+SDN	Sudan	250	Medium
+MLI	Mali	232	Medium
+GBR	United Kingdom	229	Medium
+SAU	Saudi Arabia	177	Medium
+KEN	Kenya	163	Medium
+CMR	Cameroon	162	Medium
+UKR	Ukraine	135	Medium
+USA	United States	133	Medium
+BGD	Bangladesh	127	Medium
+SDS	South Sudan	123	Medium
+BDI	Burundi	116	Medium
+RUS	Russia	114	Medium
+CAF	Central African Republic	90	Low
+MOZ	Mozambique	88	Low
+ISR	Israel	87	Low
+LKA	Sri Lanka	79	Low
+GRC	Greece	74	Low
+DEU	Germany	71	Low
+LBN	Lebanon	69	Low
+FRA	France	68	Low
+DZA	Algeria	56	Low
+ZAF	South Africa	56	Low
+IDN	Indonesia	48	Low
+NER	Niger	46	Low
+UGA	Uganda	44	Low
+ETH	Ethiopia	42	Low
+BFA	Burkina Faso	40	Low
+SWE	Sweden	34	Low
+IRL	Ireland	32	Low
+CHL	Chile	30	Low
+IRN	Iran	27	Low
+AGO	Angola	26	Low
+MEX	Mexico	26	Low
+163	Bahrain	24	Low
+PRY	Paraguay	24	Low
+VEN	Venezuela	23	Low
+TCD	Chad	22	Low
+CHN	China	21	Low
+JOR	Jordan	20	Low
+ITA	Italy	19	Low
+TUN	Tunisia	19	Low
+CAN	Canada	18	Low
+MYS	Malaysia	18	Low
+KWT	Kosovo	16	Low
+OSA	Kosovo	16	Low
+AUS	Australia	13	Low
+PER	Peru	10	Safe
+ESP	Spain	10	Safe
+BEL	Belgium	9	Safe
+PNG	Papua New Guinea	8	Safe
+NLD	Netherlands	7	Safe
+SLE	Sierra Leone	7	Safe
+KGZ	Kyrgyzstan	6	Safe
+RWA	Rwanda	6	Safe
+TZA	Tanzania	6	Safe
+ARG	Argentina	5	Safe
+CZE	Czech Republic	5	Safe
+ECU	Ecuador	5	Safe
+FIN	Finland	5	Safe
+GEO	Georgia	5	Safe
+GIN	Guinea	5	Safe
+LAO	Laos	5	Safe
+TJK	Tajikistan	5	Safe
+AUT	Austria	4	Safe
+AZE	Azerbaijan	4	Safe
+BRA	Brazil	4	Safe
+GAB	Gabon	4	Safe
+ALB	Albania	3	Safe
+HND	Honduras	3	Safe
+KAZ	Kazakhstan	3	Safe
+174	Maldives	3	Safe
+173	Malta	3	Safe
+POL	Poland	3	Safe
+ZWE	Zimbabwe	3	Safe
+ARM	Armenia	2	Safe
+CYP	Cyprus	2	Safe
+JAM	Jamaica	2	Safe
+NOR	Norway	2	Safe
+TWN	Taiwan	2	Safe
+VNM	Vietnam	2	Safe
+ZMB	Zambia	2	Safe
+BGR	Bulgaria	1	Safe
+KHM	Cambodia	1	Safe
+DNK	Denmark	1	Safe
+GHA	Ghana	1	Safe
+GUY	Guyana	1	Safe
+HTI	Haiti	1	Safe
+HUN	Hungary	1	Safe
+JPN	Japan	1	Safe
+LVA	Latvia	1	Safe
+LBR	Liberia	1	Safe
+MKD	Macedonia	1	Safe
+MDG	Madagascar	1	Safe
+MWI	Malawi	1	Safe
+MRT	Mauritania	1	Safe
+MDA	Moldova	1	Safe
+NZL	New Zealand	1	Safe
+PAN	Panama	1	Safe
+SRB	Serbia	1	Safe
+CHE	Switzerland	1	Safe
+URY	Uruguay	1	Safe
+UZB	Uzbekistan	1	Safe
+219	Dhekelia	0	Safe
+188	Tonga	0	Safe
+GRL	Greenland	0	Safe
+149	Gaza Strip	0	Safe
+FJI	Fiji	0	Safe
+LUX	Luxembourg	0	Safe
+SUR	Suriname	0	Safe
+181	Mayotte	0	Safe
+ATF	French Southern and Antarctic Lands	0	Safe
+MNG	Mongolia	0	Safe
+SWZ	Swaziland	0	Safe
+221	Anguilla	0	Safe
+212	Monaco	0	Safe
+SVN	Slovenia	0	Safe
+MNE	Montenegro	0	Safe
+186	Sao Tome and Principe	0	Safe
+DJI	Djibouti	0	Safe
+234	Niue	0	Safe
+NIC	Nicaragua	0	Safe
+BWA	Botswana	0	Safe
+SLB	Solomon Islands	0	Safe
+193	Saint Vincent and the Grenadines	0	Safe
+PRK	Korea, North	0	Safe
+ESH	Western Sahara	0	Safe
+233	Tokelau	0	Safe
+201	Bermuda	0	Safe
+PRI	Puerto Rico	0	Safe
+199	Isle of Man	0	Safe
+198	Andorra	0	Safe
+SGP	Singapore	0	Safe
+LSO	Lesotho	0	Safe
+185	Samoa	0	Safe
+CIV	Cote d'Ivoire	0	Safe
+202	American Samoa	0	Safe
+SLV	El Salvador	0	Safe
+GTM	Guatemala	0	Safe
+BIH	Bosnia and Herzegovina	0	Safe
+190	Grenada	0	Safe
+225	Saint Helena, Ascension, and Tristan da Cunha	0	Safe
+CRI	Costa Rica	0	Safe
+189	Virgin Islands	0	Safe
+209	Northern Mariana Islands	0	Safe
+180	Barbados	0	Safe
+227	Saint Pierre and Miquelon	0	Safe
+204	Guernsey	0	Safe
+PRT	Portugal	0	Safe
+207	Saint Kitts and Nevis	0	Safe
+MMR	Burma	0	Safe
+OMN	Oman	0	Safe
+ROU	Romania	0	Safe
+KOR	Korea, South	0	Safe
+SVK	Slovakia	0	Safe
+PSE	West Bank	0	Safe
+169	Cape Verde	0	Safe
+NAM	Namibia	0	Safe
+214	Gibraltar	0	Safe
+218	Akrotiri	0	Safe
+ABV	Somaliland	0	Safe
+FLK	Falkland Islands (Islas Malvinas)	0	Safe
+230	Norfolk Island	0	Safe
+BOL	Bolivia	0	Safe
+220	Wallis and Futuna	0	Safe
+ARE	United Arab Emirates	0	Safe
+HKG	Hong Kong	0	Safe
+LTU	Lithuania	0	Safe
+TTO	Trinidad and Tobago	0	Safe
+192	Aruba	0	Safe
+EST	Estonia	0	Safe
+179	French Polynesia	0	Safe
+ERI	Eritrea	0	Safe
+222	Nauru	0	Safe
+BLR	Belarus	0	Safe
+BHS	Bahamas, The	0	Safe
+216	Turks and Caicos Islands	0	Safe
+TKM	Turkmenistan	0	Safe
+COD	Congo, Democratic Republic of the	0	Safe
+228	Montserrat	0	Safe
+COG	Congo, Republic of the	0	Safe
+TGO	Togo	0	Safe
+BTN	Bhutan	0	Safe
+ATA	Antarctica	0	Safe
+TLS	Timor-Leste	0	Safe
+206	Cayman Islands	0	Safe
+ISL	Iceland	0	Safe
+237	Pitcairn Islands	0	Safe
+HRV	Croatia	0	Safe
+211	San Marino	0	Safe
+160	Comoros	0	Safe
+SEN	Senegal	0	Safe
+CUB	Cuba	0	Safe
+197	Antigua and Barbuda	0	Safe
+195	Jersey	0	Safe
+BLZ	Belize	0	Safe
+191	Micronesia, Federated States of	0	Safe
+id	name	0	Safe
+BEN	Benin	0	Safe
+210	Liechtenstein	0	Safe
+187	Saint Lucia	0	Safe
+MAR	Morocco	0	Safe
+QAT	Qatar	0	Safe
+153	Mauritius	0	Safe
+217	Palau	0	Safe
+DOM	Dominica	0	Safe
+223	Cook Islands	0	Safe
+224	Tuvalu	0	Safe
+231	Svalbard	0	Safe
+236	Cocos (Keeling) Islands	0	Safe
+215	British Virgin Islands	0	Safe
+VUT	Vanuatu	0	Safe
+232	Christmas Island	0	Safe
+235	Holy See (Vatican City)	0	Safe
+194	Kiribati	0	Safe
+GNB	Guinea-Bissau	0	Safe
+203	Marshall Islands	0	Safe
+213	Saint Martin	0	Safe
+GMB	Gambia, The	0	Safe
+BRN	Brunei	0	Safe
+GNQ	Equatorial Guinea	0	Safe
+NCL	New Caledonia	0	Safe
+226	Saint Barthelemy	0	Safe
+183	Netherlands Antilles	0	Safe
+196	Seychelles	0	Safe
+208	Faroe Islands	0	Safe
+168	Macau	0	Safe
