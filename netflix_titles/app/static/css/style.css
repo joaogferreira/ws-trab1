@@ -278,7 +278,6 @@ input:focus {
 }
 
 .sidebar .nav {
-    margin-top: 20px;
     float: none;
 }
 
@@ -516,4 +515,42 @@ input:focus {
   padding: 2px 16px;
 }
 
+.styled-table {
+    margin-left: 500px;
+    margin-top: 40px;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 1000px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
 
+.styled-table thead tr {
+    background-color: #E50914;
+    color: #ffffff;
+    text-align: left;
+    font-size: 20px;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    font-size: 20px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #E50914;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #E50914;
+}

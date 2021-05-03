@@ -1,0 +1,35 @@
+{% extends base %}
+
+
+{% block content %}
+    <h2 style="font-family: Courier; margin-left: 500px;margin-top: 100px;"> Some of our movies</h2>
+    <div class="row">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Directed by</th>
+                        <th>Release Year</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movie in movies %}
+                        <tr>
+                            <td>{{ movie.title }}</td>
+                            <td>{{ movie.director }}</td>
+                            <td>{{ movie.release_year }}</td>
+                            <td>{{ movie.listed_in }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% for movie in movies %}
+
+            {% endfor %}
+
+        </div>
+{% endblock %}
+
+
