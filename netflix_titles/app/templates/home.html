@@ -2,11 +2,29 @@
 {% extends base %}
 
 {% block content %}
+    <div style="border: 3px solid #fff; padding: 20px;">
+        <div class="card" style="margin-left: 500px; margin-top: 100px; width: 400px; float: left;
+    padding: 20px;
+    border: 2px solid red;">
+          <img src="static/img/movies.png" alt="Avatar" style="width:100%">
+          <div class="container">
+            <h4><b>Movies</b></h4>
+            <p>{{ movies }} movies available on Netflix </p>
+          </div>
+        </div>
 
 
+        <div class="card" style="margin-left: 100px; margin-top: 100px; width: 400px; float: left;
+    padding: 20px;
+    border: 2px solid red;">
+          <img src="static/img/tv_shows.png" alt="Avatar" style="width:100%">
+          <div class="container">
+            <h4><b>TV Shows </b></h4>
+            <p>{{ tv_shows }} tv shows available on Netflix</p>
+          </div>
+        </div>
 
-{% endblock %}
+    </div>
 
-{% block scripts %}
 
 {% endblock %}

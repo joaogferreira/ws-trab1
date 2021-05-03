@@ -18,7 +18,11 @@ from app.repository import Repository
 def home(request):
     assert isinstance(request, HttpRequest)
 
-    tparams= {'base': 'base.html'}
+    tparams= {
+            'base': 'base.html',
+            'movies': 2000,
+            'tv_shows': 3000
+        }
 
     return render(request, 'home.html', tparams)
 
