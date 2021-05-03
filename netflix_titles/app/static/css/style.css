@@ -495,35 +495,13 @@ input:focus {
 /* CSS playground here, via these variables you can adjust the accentcolor, the position and dimensions of the bubble and textsize en color of the buttontext */
 
 :root {
-/* Color of the background */
-  --bodycolor: #efefef;
+    /* Color of the background */
+    --bodycolor: #efefef;
 
-/* Width of the columsn */
---boxwidth: 340px;
-/* Height of the rows */
---boxheight: 520px;
-
-/* Width of the bubble (it's always a circle, width and height are the same) */
- --icon-box-dimensions: 250px;
-
-/* DON'T TOUCH THE VALUES OF THIS VARIABLE! */
- --icon-box-dimensions-half: calc(var(--icon-box-dimensions) /2);
-  /*--------------------*/
-
-/* How far from the top is the position of the bubble? */
-  --icon-offset: -10%;
-
-/* Size of the font */
-  --content-fontsize: 1.1em;
-
-/* Define a accent color, make sure it's readable */
-  --accentcolor: maroon;
-
-/* backgroundcolor and text color of the button, unhovered.
-/* Color in hovered state is the accent color */ */
-  --btntext-background : rgba(255,255,255,0.1);
-  --btntext-color : #eee;
+    /* Width of the columsn */
+    --boxwidth: 340px;
 }
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
