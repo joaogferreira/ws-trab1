@@ -33,15 +33,17 @@ def home(request):
 def movies(request):
     assert isinstance(request, HttpRequest)
 
+    moviesInfo = repository.getMovies()
+    movies = len(moviesInfo)
+
     tparams = {
-        'movies' : [
-            {'title': 'O Padrinho', 'director': 'Director X', 'release_year': 'Year Y', 'listed_in': 'comedy'},
-            {'title': 'O Padrinho II', 'director': 'Director A', 'release_year': 'Year Z', 'listed_in': 'drama'},
-            {'title': 'O Padrinho III', 'director': 'Director B', 'release_year': 'Year W', 'listed_in': 'comedy and drama'},
-            {'title': 'O Grande Chefão', 'director': 'Director C', 'release_year': 'Year H', 'listed_in': 'war'},
-        ],
-        'base' : 'base.html'
-    }
+        'movies': [],
+        'base': 'base.html'
+        }
+
+    for i in range(movies):
+        aux = {'title': moviesInfo[i].get('title'), 'director': moviesInfo[i].get('directed_by'), 'release_year': moviesInfo[i].get('release_year'), 'listed_in': moviesInfo[i].get('listed_in')}
+        tparams['movies'].append(aux)
 
     return render(request, 'movies.html', tparams)
 
@@ -49,15 +51,18 @@ def movies(request):
 def tvshows(request):
     assert isinstance(request, HttpRequest)
 
+    tvShowsInfo = repository.getTvShows()
+    tvShows = len(tvShowsInfo)
+    print(tvShowsInfo)
     tparams = {
-        'movies': [
-            {'title': 'Serie I', 'director': 'Director Quim Barreiros', 'release_year': '2021', 'listed_in': 'comedy'},
-            {'title': 'Serie II', 'director': 'Director Yashin', 'release_year': '2011', 'listed_in': 'drama'},
-            {'title': 'Serie III', 'director': 'Director Iker Casillas', 'release_year': '2010', 'listed_in': 'comedy and drama'},
-            {'title': 'Serie IV', 'director': 'Director C', 'release_year': 'Year H', 'listed_in': 'war'},
-        ],
+        'tvShows': [],
         'base': 'base.html'
     }
+
+    for i in range(tvShows):
+        aux = {'title': tvShowsInfo[i].get('title'), 'director': tvShowsInfo[i].get('directed_by'),
+               'release_year': tvShowsInfo[i].get('release_year'), 'listed_in': tvShowsInfo[i].get('listed_in')}
+        tparams['tvShows'].append(aux)
 
     return render(request, 'tvshows.html', tparams)
 

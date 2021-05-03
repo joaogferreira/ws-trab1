@@ -39,7 +39,6 @@ Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year 
 	
 #Informação dos Movies presentes no csv
 PREFIX net:<http://netflix-titles.com/pred/>
-PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
            
 Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in
 	where{
@@ -53,10 +52,10 @@ Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year 
         ?film net:duration ?duration .
         ?film net:listed_in ?listed_in .
 	}
+	Limit 10
 	
 #Informação dos TV SHOWS presentes no csv
 PREFIX net:<http://netflix-titles.com/pred/>
-PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
            
 Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in
 	where{
@@ -69,4 +68,40 @@ Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year 
         ?film net:release_year ?release_year .
         ?film net:duration ?duration .
         ?film net:listed_in ?listed_in .
+	}
+	Limit 10
+
+#Realizadores
+PREFIX net:<http://netflix-titles.com/pred/>
+
+Select distinct ?director
+	where{
+		?film net:directed_by ?director .
+	}
+
+#Titulo Filme/TVShows
+
+PREFIX net:<http://netflix-titles.com/pred/>
+
+Select distinct ?title
+	where{
+		?film net:title ?title .
+	}
+
+#Categorias
+
+PREFIX net:<http://netflix-titles.com/pred/>
+
+Select distinct ?listed_in
+	where{
+		?film net:listed_in ?listed_in .
+	}
+
+#Atores
+
+PREFIX net:<http://netflix-titles.com/pred/>
+
+Select distinct ?cast
+	where{
+		?film net:cast ?cast .
 	}
