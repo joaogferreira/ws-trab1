@@ -1,0 +1,72 @@
+#Número de "movies" presentes no csv
+
+PREFIX net:<http://netflix-titles.com/pred/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+           
+Select (COUNT(?movie) as ?n_movies)
+	where{
+		?movies net:type ?movie .
+    		Filter(?movie = 'Movie')
+	}	
+	
+
+#Número de "TV SHOWS" presentes no csv
+PREFIX net:<http://netflix-titles.com/pred/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+           
+Select (COUNT(?tv_show) as ?n_tvShow)
+	where{
+		?tv_shows net:type ?tv_show .
+    		Filter(?tv_show = 'TV Show')
+	}	
+	
+#Informação presentes no csv
+PREFIX net:<http://netflix-titles.com/pred/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+           
+Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in
+	where{
+		?film net:type ?type .
+		?film net:title ?title .
+        ?film net:directed_by ?directed_by .
+        ?film net:cast ?cast .
+        ?film net:country ?country .
+        ?film net:date_added ?date_added .
+        ?film net:release_year ?release_year .
+        ?film net:duration ?duration .
+        ?film net:listed_in ?listed_in .
+	}
+	
+#Informação dos Movies presentes no csv
+PREFIX net:<http://netflix-titles.com/pred/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+           
+Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in
+	where{
+		?film net:type "Movie" .
+		?film net:title ?title .
+        ?film net:directed_by ?directed_by .
+        ?film net:cast ?cast .
+        ?film net:country ?country .
+        ?film net:date_added ?date_added .
+        ?film net:release_year ?release_year .
+        ?film net:duration ?duration .
+        ?film net:listed_in ?listed_in .
+	}
+	
+#Informação dos TV SHOWS presentes no csv
+PREFIX net:<http://netflix-titles.com/pred/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+           
+Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in
+	where{
+		?film net:type "TV Show" .
+		?film net:title ?title .
+        ?film net:directed_by ?directed_by .
+        ?film net:cast ?cast .
+        ?film net:country ?country .
+        ?film net:date_added ?date_added .
+        ?film net:release_year ?release_year .
+        ?film net:duration ?duration .
+        ?film net:listed_in ?listed_in .
+	}

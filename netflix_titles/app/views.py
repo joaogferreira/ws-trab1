@@ -9,19 +9,22 @@ import requests
 
 from app.repository import Repository
 
-#repo_name = ""
-#endpoint = "http://localhost:7200"
-#repository = Repository(repo_name, endpoint)
+repo_name = "netflix"
+endpoint = "http://localhost:7200"
+repository = Repository(repo_name, endpoint)
 
 
 # Create your views here.
 def home(request):
     assert isinstance(request, HttpRequest)
 
+    movies = repository.getNumberMovies()
+    tvShows = repository.getNumberTvShows()
+
     tparams= {
             'base': 'base.html',
-            'movies': 2000,
-            'tv_shows': 3000
+            'movies': movies[0]['n_movies'],
+            'tv_shows': tvShows[0]['n_tvShow']
         }
 
     return render(request, 'home.html', tparams)

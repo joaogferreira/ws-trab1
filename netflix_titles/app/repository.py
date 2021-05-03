@@ -11,322 +11,45 @@ class Repository:
             ?weapon att:name ?weaponName
         } GROUP BY ?weaponName ORDER BY DESC (?count)
         """
-
-    # Get countries with more kills
-    deadliestCountries = """
-        PREFIX att:<http://global-terrorism.com/pred/>
-        SELECT ?countryName (sum(?nKills) as ?totalKills)
-        WHERE{
-            ?attack att:kills ?nKills .
-            ?attack att:country ?country .
-            ?country att:name ?countryName
-        } GROUP BY ?countryName ORDER BY DESC (?totalKills)
-        """
-
-    # All attacks with all informations
-    allAttacks = """
-        PREFIX att:<http://global-terrorism.com/pred/>
-        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-        SELECT ?attack ?date ?countryName ?regionName ?city ?success ?suicide ?typeName ?targetName ?targetNationalityName ?weaponName ?kills
-            WHERE{
-                ?attack att:date ?date .
-                ?attack att:country ?country .
-                ?country att:name ?countryName .
-                ?attack att:region ?region .
-                ?region att:name ?regionName .
-                ?attack att:city ?city .
-                ?attack att:success ?success .
-                ?attack att:suicide ?suicide .
-                ?attack att:type ?type .
-                ?type att:name ?typeName .
-                ?attack att:target ?target .
-                ?target att:name ?targetName .
-                ?attack att:target_nationality ?targetNationality .
-                ?targetNationality att:name ?targetNationalityName .
-                ?attack att:weapon ?weapon .
-                ?weapon att:name ?weaponName .
-                ?attack att:kills ?kills
-                FILTER (?kills>10)
-        } LIMIT 2000
+    #Get the number of movies
+    nMovies= """
+           PREFIX net:<http://netflix-titles.com/pred/>
+            Select (COUNT(?movie) as ?n_movies)
+                where{
+                    ?movies net:type ?movie .
+                        Filter(?movie = 'Movie')
+                }	 
     """
-
-    # Number of kills per year
-    killsYear = """
-        PREFIX att:<http://global-terrorism.com/pred/>
-        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-        SELECT ?attackYear (SUM (?kills) AS ?kills)
-        WHERE{
-            ?attack att:date ?date .
-            ?attack att:kills ?kills .
-        } GROUP BY (year(xsd:dateTime(?date)) as ?attackYear)
-
-    """
-
-    # Number of attacks per year
-    attacksYear = """
-            PREFIX att:<http://global-terrorism.com/pred/>
-            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-            SELECT ?attackYear (COUNT (?attack) AS ?attacks)
-            WHERE{
-                ?attack att:date ?date .
-            } GROUP BY (year(xsd:dateTime(?date)) as ?attackYear)
-
-        """
-
-    # Number of succeeded attacks
-    succeededAttacks = """
-
-        PREFIX att:<http://global-terrorism.com/pred/>
-        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-        SELECT (COUNT(?success) AS ?attacksSuccess)
-        WHERE{
-                ?attack att:success ?success .
-                FILTER (?success = 1) .
-            }
-
-    """
-
-    # Number of failed attacks
-    unsucceededAttacks = """
-        PREFIX att:<http://global-terrorism.com/pred/>
-        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-        SELECT (COUNT(?success) AS ?attacksFailed)
-        WHERE{
-                ?attack att:success ?success .
-                FILTER (?success = 0) .
-            }
-    """
-
-    # Number of attacks, kills and succeeded attacks by country
-    attacksNumbers = """
-        PREFIX att:<http://global-terrorism.com/pred/>
-        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-        SELECT ?countryName (COUNT(?attack) AS ?attacks) (SUM (?kills) AS ?countryKills) (SUM(?success) AS ?attacksSuccess)
-        WHERE
-            {
-                ?attack att:country ?country .
-                ?country att:name ?countryName .
-                ?attack att:kills ?kills .
-                ?attack att:success ?success .
-            }
-
-        GROUP BY ?countryName
-        ORDER BY DESC (?attacks)
-    """
-
-    # Countries names list
-    countriesNames = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT DISTINCT ?country ?countryName
-    WHERE
-        {
-            ?attack att:country ?country .
-            ?country att:name ?countryName
-        } ORDER BY (?countryName)
-    """
-
-    # Regions names list
-    regionsNames = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT DISTINCT ?region ?regionName
-    WHERE
-        {
-            ?attack att:region ?region .
-            ?region att:name ?regionName
-        } ORDER BY (?regionName)
-    """
-
-    # Attacks types list
-    attackTypes = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT DISTINCT ?attackType ?attackTypeName
-    WHERE
-        {
-            ?attack att:type ?attackType .
-            ?attackType att:name ?attackTypeName
-        } ORDER BY (?attackTypeName)
-    """
-
-    # Weapons names list
-    weapons = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT DISTINCT ?weapon ?weaponName
-    WHERE
-        {
-            ?attack att:weapon ?weapon .
-            ?weapon att:name ?weaponName
-        } ORDER BY (?weaponName)
-    """
-
-    # Targets list
-    targets = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT DISTINCT ?target ?targetName
-    WHERE
-        {
-            ?attack att:target ?target .
-            ?target att:name ?targetName
-        } ORDER BY (?targetName)
-    """
-
-    # Targets nationality list
-    targetNationalities = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT DISTINCT ?targetNationality ?targetNationalityName
-    WHERE
-        {
-            ?attack att:target_nationality ?targetNationality .
-            ?targetNationality att:name ?targetNationalityName
-        } ORDER BY (?targetNationalityName)
-    """
-
-    # Generate Inference: Global critical zones according attacks numbers
-
-    safeGlobal = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    INSERT {?country att:risk "Safe"}
-        WHERE {
-            {
-                SELECT (COUNT(?attack) AS ?attacks) ?country
-                WHERE {
-                    ?attack att:country ?country
-                } GROUP BY ?country HAVING (?attacks <= 10)
-            }
-        }
-    """
-
-    lowGlobal = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    INSERT {?country att:risk "Low"}
-        WHERE {
-            {
-                SELECT (COUNT(?attack) AS ?attacks) ?country
-                WHERE {
-                    ?attack att:country ?country
-                } GROUP BY ?country HAVING (?attacks > 10 && ?attacks <= 100)
-            }
-        }
-    """
-
-    mediumGlobal = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    INSERT {?country att:risk "Medium"}
-        WHERE {
-            {
-                SELECT (COUNT(?attack) AS ?attacks) ?country
-                WHERE {
-                    ?attack att:country ?country
-                } GROUP BY ?country HAVING (?attacks > 100 && ?attacks <= 1000 )
-            }
-        }
-    """
-
-    highGlobal = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    INSERT {?country att:risk "High"}
-        WHERE {
-            {
-                SELECT (COUNT(?attack) AS ?attacks) ?country
-                WHERE {
-                    ?attack att:country ?country
-                } GROUP BY ?country HAVING (?attacks > 1000 && ?attacks <= 3000 )
-            }
-        }
-    """
-
-    criticalGlobal = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    INSERT {?country att:risk "Critical"}
-        WHERE {
-            {
-                SELECT (COUNT(?attack) AS ?attacks) ?country
-                WHERE {
-                    ?attack att:country ?country
-                } GROUP BY ?country HAVING (?attacks > 3000 )
-            }
-        }
-    """
-
-    # Generate Inference: Global critical suicide zones according suicide attacks numbers
-    suicideZones = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    INSERT {?region att:suicideAttacks ?suicideAttacks}
-    WHERE {
-        {
-            SELECT (SUM(?suicide) AS ?suicideAttacks) ?region
-            WHERE {
-                ?attack att:region ?region .
-                ?attack att:suicide ?suicide
-            } GROUP BY ?region
-        }
-    }
-    """
-
-    # Generate Inference: Critical weapons according kills
-    weaponKills = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    INSERT {?weapon att:kills ?weaponKills}
-    WHERE {
-        {
-            SELECT (SUM(?kills) AS ?weaponKills) ?weapon
-            WHERE {
-                ?attack att:weapon ?weapon .
-                ?attack att:kills ?kills
-            } GROUP BY ?weapon
-        }
-    }
-    """
-
-    # Get risk of each country
-    riskByCountry = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT ?countryName ?risk (COUNT(?attack) AS ?attacks)
-        WHERE {
-            ?attack att:country ?country .
-            ?country att:name ?countryName .
-            ?country att:risk ?risk .
-        } GROUP BY ?countryName ?risk ORDER BY DESC (?attacks)
-    """
-
-    # Get suicide regions
-    selectSuicideZones = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT ?regionName ?suicideAttacks
-    WHERE {
-        ?region att:name ?regionName .
-        ?region att:suicideAttacks ?suicideAttacks
-    } ORDER BY DESC (?suicideAttacks)
-    """
-
-    # Get weapon kills numbers
-    selectWeaponKills = """
-    PREFIX att:<http://global-terrorism.com/pred/>
-    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-    SELECT DISTINCT ?weaponName ?weaponKills
-    WHERE {
-        ?attack att:weapon ?weapon .
-        ?weapon att:name ?weaponName .
-        ?weapon att:kills ?weaponKills
-    } ORDER BY DESC(?weaponKills)
+    nTVShows = """
+    PREFIX net:<http://netflix-titles.com/pred/>
+           
+    Select (COUNT(?tv_show) as ?n_tvShow)
+        where{
+            ?tv_shows net:type ?tv_show .
+                Filter(?tv_show = 'TV Show')
+        }	
     """
 
     def __init__(self, repo_name, endpoint):
         self.graphDB = GraphDB(endpoint, repo_name)
+
+    def getNumberMovies(self):
+        list = []
+        res = self.graphDB.getResults(self.nMovies)
+        for i in res[:5]:
+            dic = {}
+            dic['n_movies'] = i['n_movies']['value']
+            list.append(dic)
+        return list
+
+    def getNumberTvShows(self):
+        list = []
+        res = self.graphDB.getResults(self.nTVShows)
+        for i in res[:5]:
+            dic = {}
+            dic['n_tvShow'] = i['n_tvShow']['value']
+            list.append(dic)
+        return list
 
     def getTopWeapons(self):
         list = []
