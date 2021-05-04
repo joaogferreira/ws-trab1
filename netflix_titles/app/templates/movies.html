@@ -15,15 +15,17 @@
                 </thead>
                 <tbody>
                     {% for movie in movies %}
-                        <tr>
-                            <td>{{ movie.title }}</td>
+                        <tr onclick="alert('Title: {{ movie.title }}\nDirected by: {{ movie.director }}\nRelease year: {{ movie.release_year }}\nCategory: {{ movie.listed_in }}\nCast: {{ movie.cast  }}\nDuration: {{ movie.duration }}')">
+                            <td >{{ movie.title }}</td>
                             <td>{{ movie.director }}</td>
                             <td>{{ movie.release_year }}</td>
                             <td>{{ movie.listed_in }}</td>
                         </tr>
                     {% endfor %}
+
                 </tbody>
             </table>
+
 
         </div>
 {% endblock %}
