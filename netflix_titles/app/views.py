@@ -75,7 +75,7 @@ def search(request):
             results = repository.build_search(keyword)
             print(results)
             #mexer aqui
-            return render(request, 'search_results.html', {'keyword': keyword, 'base': 'base.html'})
+            return render(request, 'search_results.html', {'keyword': keyword, 'base': 'base.html' , 'results': results})
         else:
             return render(request, 'search.html', {'error': True, 'base': 'base.html'} )
     else:
