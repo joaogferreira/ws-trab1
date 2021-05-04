@@ -1,0 +1,42 @@
+{% extends base %}
+
+{% block content %}
+
+    <head><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"></head>
+<br />
+    <h2 style="font-family: Courier; margin-left: 500px;margin-top: 10px;"> Add Neftlix title</h2>
+
+<div class="inner contact" style="margin-left: 400px; margin-top: 50px; margin-right: 100px">
+                <!-- Form Area -->
+                <div class="contact-form">
+                    <!-- Form -->
+                    <form id="contact-us" method="post" action=".">
+                        {%  csrf_token %}
+                        <!-- Left Inputs -->
+                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                            <input type="text" name="type" id="type" required="required" class="form" placeholder="Type" />
+                            <input type="text" name="title" id="title" required="required" class="form" placeholder="Title" />
+                            <input type="text" name="directed_by" id="directed_by" class="form" placeholder="Directed by" />
+                            <input type="text" name="cast" id="cast" class="form" placeholder="Cast" />
+                            <input type="text" name="country" id="country" class="form" placeholder="Country" />
+                            <input type="text" name="date" id="date" class="form" placeholder="Date Added" />
+                            <input type="text" name="release" id="release" required="required" class="form" placeholder="Release year" />
+                            <input type="text" name="duration" id="duration" class="form" placeholder="Duration" />
+                            <input type="text" name="listed_in" id="listed_in" class="form" placeholder="Listed in" />
+                        </div><!-- End Left Inputs -->
+
+
+                        <div class="relative fullwidth col-xs-12" style="margin-left: -500px;">
+                            <button type="submit" id="submit" name="submit" class="form-btn semibold" onclick="alert('Movie added with success!')">Add</button>
+                        </div>
+
+                        <!-- Clear -->
+                        <div class="clear"></div>
+                    </form>
+
+                </div><!-- End Contact Form Area -->
+            </div><!-- End Inner -->
+
+
+{%  endblock %}
+

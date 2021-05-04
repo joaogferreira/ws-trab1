@@ -73,18 +73,28 @@ def search(request):
         keyword = request.POST['keyword']
         if keyword:
             results = repository.build_search(keyword)
-            print(results)
-            #mexer aqui
-            return render(request, 'search_results.html', {'keyword': keyword, 'base': 'base.html' , 'results': results})
+
+            return render(request, 'search_results.html', {'keyword': keyword, 'base': 'base.html' , 'results': results, 'nResults': len(results)})
         else:
             return render(request, 'search.html', {'error': True, 'base': 'base.html'} )
     else:
         return render(request, 'search.html', {'error': False, 'base': 'base.html' } )
 
-    '''
-    tparams = {
-        'base': 'base.html'
-    }
 
-    return render(request, 'search.html', tparams)
-    '''
+def add(request):
+    assert isinstance(request, HttpRequest)
+
+    if request.method == 'POST':
+        type = request.POST['type']
+        title = request.POST['title']
+        directed = request.POST['directed_by']
+        cast = request.POST['cast']
+        country = request.POST['country']
+        date = request.POST['date']
+        release = request.POST['release']
+        duration = request.POST['duration']
+        listed_in = request.POST['listed_in']
+
+    else:
+        print('B')
+    return render(request, 'add.html', {'base': 'base.html'})

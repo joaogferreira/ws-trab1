@@ -22,5 +22,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('movies/', views.movies, name='movies'),
     path('tvshows/', views.tvshows, name='tvshows'),
-    path('search/', views.search, name='search')
+    path('search/', views.search, name='search'),
+    path('add/', views.add, name='add')
 ]

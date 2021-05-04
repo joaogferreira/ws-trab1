@@ -4,7 +4,14 @@
 {% block content %}
     <h2 style="font-family: Courier; margin-left: 500px;margin-top: 100px;"> Search page</h2>
 
+    <form action="." method="post" style="margin-left: 500px">
+        {%  csrf_token %}
+        <p>Search: <input type="text" name="keyword"/></p>
+    </form>
+
     <p style="font-family: Courier; margin-left: 500px"> Search for: {{  keyword }}</p>
+    
+    <p style="font-family: Courier; margin-left: 500px"> Found {{  nResults}} results.</p>
 
     <table class="styled-table">
         <thead>
