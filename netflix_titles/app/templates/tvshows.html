@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                     {% for tvshow in tvShows %}
-                        <tr>
+                        <tr onclick="alert('Title: {{ tvshow.title }}\nDirected by: {{ tvshow.director }}\nRelease year: {{ tvshow.release_year }}\nCategory: {{ tvshow.listed_in }}\nCast: {{ tvshow.cast  }}\nDuration: {{ tvshow.duration }}')">
                             <td>{{ tvshow.title }}</td>
                             <td>{{ tvshow.director }}</td>
                             <td>{{ tvshow.release_year }}</td>
