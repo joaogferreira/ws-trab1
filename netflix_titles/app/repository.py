@@ -118,7 +118,7 @@ class Repository:
 
     def build_search(self, keyword):
         query_base = "PREFIX net:<http://netflix-titles.com/pred/> Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in where{ ?film net:type ?type . ?film net:title ?title . ?film net:directed_by ?directed_by . ?film net:cast ?cast . ?film net:country ?country . ?film net:date_added ?date_added . ?film net:release_year ?release_year . ?film net:duration ?duration . ?film net:listed_in ?listed_in ."
-        aux = " filter ( contains (?title, '" + keyword +"' ) || contains (?directed_by, '" + keyword +"') || contains (?cast, '" + keyword +"' ) || contains (?listed_in, '" + keyword +"'))}"
+        aux = " filter ( regex (?title, '" + keyword +"', 'i' ) || regex (?directed_by, '" + keyword +"', 'i') || regex (?cast, '" + keyword +"', 'i') || regex (?listed_in, '" + keyword +"', 'i'))}"
         query_base = query_base + aux
 
         list= []

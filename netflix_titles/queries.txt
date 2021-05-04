@@ -120,6 +120,5 @@ Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year 
         ?film net:release_year ?release_year .
         ?film net:duration ?duration .
         ?film net:listed_in ?listed_in .
-    filter ( contains (?title, 'Casa') || contains (?directed_by, 'Casa') || contains (?cast, 'Casa') || contains(?listed_in, 'Casa'))
-
+    filter (regex (?title, 'la casa', 'i') || regex(?directed_by, 'la casa', 'i') || regex (?cast, 'la casa', 'i') || regex(?listed_in, 'la casa', 'i'))
 	}
