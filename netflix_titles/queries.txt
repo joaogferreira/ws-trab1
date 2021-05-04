@@ -105,3 +105,21 @@ Select distinct ?cast
 	where{
 		?film net:cast ?cast .
 	}
+
+#filter
+PREFIX net:<http://netflix-titles.com/pred/>
+
+Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in
+	where{
+		?film net:type ?type .
+		?film net:title ?title .
+        ?film net:directed_by ?directed_by .
+        ?film net:cast ?cast .
+        ?film net:country ?country .
+        ?film net:date_added ?date_added .
+        ?film net:release_year ?release_year .
+        ?film net:duration ?duration .
+        ?film net:listed_in ?listed_in .
+    filter ( contains (?title, 'Casa') || contains (?directed_by, 'Casa') || contains (?cast, 'Casa') || contains(?listed_in, 'Casa'))
+
+	}

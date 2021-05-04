@@ -53,7 +53,6 @@ def tvshows(request):
 
     tvShowsInfo = repository.getTvShows()
     tvShows = len(tvShowsInfo)
-    print(tvShowsInfo)
     tparams = {
         'tvShows': [],
         'base': 'base.html'
@@ -69,9 +68,12 @@ def tvshows(request):
 def search(request):
     assert isinstance(request, HttpRequest)
 
+
     if 'keyword' in request.POST:
         keyword = request.POST['keyword']
         if keyword:
+            results = repository.build_search(keyword)
+            print(results)
             #mexer aqui
             return render(request, 'search_results.html', {'keyword': keyword, 'base': 'base.html'})
         else:
