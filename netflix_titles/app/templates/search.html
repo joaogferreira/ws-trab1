@@ -4,6 +4,14 @@
 {% block content %}
     <h2 style="font-family: Courier; margin-left: 500px;margin-top: 100px;"> Search page</h2>
 
+    {%  if error  %}
+        <p style="..."> ERRO: Insira a informação pedida.</p>
+    {%  endif  %}
+
+    <form action="." method="post" style="margin-left: 500px">
+        {%  csrf_token %}
+        <p>Search: <input type="text" name="keyword"/></p>
+    </form>
 {% endblock %}
 
 

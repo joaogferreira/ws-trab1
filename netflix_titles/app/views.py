@@ -69,9 +69,20 @@ def tvshows(request):
 def search(request):
     assert isinstance(request, HttpRequest)
 
+    if 'keyword' in request.POST:
+        keyword = request.POST['keyword']
+        if keyword:
+            #mexer aqui
+            return render(request, 'search_results.html', {'keyword': keyword, 'base': 'base.html'})
+        else:
+            return render(request, 'search.html', {'error': True, 'base': 'base.html'} )
+    else:
+        return render(request, 'search.html', {'error': False, 'base': 'base.html' } )
+
+    '''
     tparams = {
         'base': 'base.html'
     }
 
     return render(request, 'search.html', tparams)
-
+    '''
