@@ -1,0 +1,37 @@
+{% extends base %}
+
+
+{% block content %}
+    <h2 style="font-family: Courier; margin-left: 500px;margin-top: 100px;"> Search by release year page</h2>
+
+    {%  if error  %}
+        <p style="margin-left: 500px"> ERRO: Insert correct data.</p>
+    {%  endif  %}
+
+
+   <div class="inner contact" style="margin-left: 400px; margin-top: 50px; margin-right: 100px">
+                <!-- Form Area -->
+                <div class="contact-form">
+                    <!-- Form -->
+                    <form id="contact-us" method="post" action=".">
+                        {%  csrf_token %}
+                        <!-- Left Inputs -->
+                        <div class="col-xs-6 wow animated slideInLeft" data-wow-delay=".5s">
+                            <input type="text" name="from" id="from" required="required" class="form" style="width: 300px;" placeholder="From" />
+                            <input type="text" name="to" id="to" required="required" class="form" style="width: 300px; margin-left: 20px" placeholder="To" />
+                        </div><!-- End Left Inputs -->
+
+
+                        <div class="relative fullwidth col-xs-12" style="margin-left: -500px;">
+                            <button type="submit" id="submit" name="submit" class="form-btn semibold" >Search</button>
+                        </div>
+
+                        <!-- Clear -->
+                        <div class="clear"></div>
+                    </form>
+
+                </div><!-- End Contact Form Area -->
+            </div><!-- End Inner -->
+{% endblock %}
+
+

@@ -108,3 +108,27 @@ def add(request):
         results = repository.addTitle(id, type, title, directed, cast, country, date, release, duration, listed_in)
 
     return render(request, 'add.html', {'base': 'base.html'})
+
+def search_by_release_year(request):
+    assert isinstance(request, HttpRequest)
+
+    if 'from' in request.POST and 'to' in request.POST:
+        from_year = request.POST['from']
+        to = request.POST['to']
+
+
+        if from_year and to and from_year.isnumeric() and to.isnumeric():
+            #results = repository.build_search(from_year,to)
+
+            results = {}
+
+            return render(request, 'year_results.html', {'from': from_year, 'to': to, 'base': 'base.html', 'results': results, 'nResults': len(results)})
+        else:
+            return render(request, 'year.html', {'error': True, 'base': 'base.html'} )
+    else:
+        return render(request, 'year.html', {'error': False, 'base': 'base.html' } )
+
+
+    return render(request, 'year.html', {'base' : 'base.html'} )
+
+

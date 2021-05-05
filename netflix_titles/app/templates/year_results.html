@@ -1,0 +1,49 @@
+{% extends base %}
+
+
+{% block content %}
+    <h2 style="font-family: Courier; margin-left: 500px;margin-top: 100px;"> Search page  by release year</h2>
+
+    <form action="." method="post" style="margin-left: 500px">
+        {%  csrf_token %}
+        <p>Search by release year from {{ from }} to {{ to }}</p>
+    </form>
+
+
+    <p style="font-family: Courier; margin-left: 500px"> Found {{  nResults}} results.</p>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Title</th>
+                <th>Directed by</th>
+                <th>Cast</th>
+                <th>Country</th>
+                <th>Date Added</th>
+                <th>Release Year</th>
+                <th>Duration</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in results %}
+                <tr>
+                    <td>{{ result.type }}</td>
+                    <td>{{ result.title }}</td>
+                    <td>{{ result.directed_by }}</td>
+                    <td>{{ result.cast }}</td>
+                    <td>{{ result.country }}</td>
+                    <td >{{ result.date_added }}</td>
+                    <td >{{ result.release_year }}</td>
+                    <td >{{ result.duration }} </td>
+                    <td >{{ result.listed_in }}</td>
+
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}
+
+
