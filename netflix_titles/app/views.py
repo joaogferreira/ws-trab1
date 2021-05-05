@@ -44,7 +44,10 @@ def movies(request):
         }
 
     for i in range(movies):
-        aux = {'title': moviesInfo[i].get('title'), 'director': moviesInfo[i].get('directed_by'), 'release_year': moviesInfo[i].get('release_year'), 'listed_in': moviesInfo[i].get('listed_in')}
+        aux = {'title': moviesInfo[i].get('title'), 'director': moviesInfo[i].get('directed_by'),
+               'release_year': moviesInfo[i].get('release_year'), 'listed_in': moviesInfo[i].get('listed_in'),
+               'cast': moviesInfo[i].get('cast'), 'duration': moviesInfo[i].get('duration')}
+        
         tparams['movies'].append(aux)
 
     return render(request, 'movies.html', tparams)
@@ -62,7 +65,8 @@ def tvshows(request):
 
     for i in range(tvShows):
         aux = {'title': tvShowsInfo[i].get('title'), 'director': tvShowsInfo[i].get('directed_by'),
-               'release_year': tvShowsInfo[i].get('release_year'), 'listed_in': tvShowsInfo[i].get('listed_in')}
+               'release_year': tvShowsInfo[i].get('release_year'), 'listed_in': tvShowsInfo[i].get('listed_in'),
+               'cast': tvShowsInfo[i].get('cast'), 'duration': tvShowsInfo[i].get('duration')}
         tparams['tvShows'].append(aux)
 
     return render(request, 'tvshows.html', tparams)
