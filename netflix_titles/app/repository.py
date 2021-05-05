@@ -116,12 +116,30 @@ class Repository:
         }
     """
 
+
     def build_search(self, keyword):
         query_base = "PREFIX net:<http://netflix-titles.com/pred/> Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in where{ ?film net:type ?type . ?film net:title ?title . ?film net:directed_by ?directed_by . ?film net:cast ?cast . ?film net:country ?country . ?film net:date_added ?date_added . ?film net:release_year ?release_year . ?film net:duration ?duration . ?film net:listed_in ?listed_in ."
         aux = " filter ( regex (?title, '" + keyword +"', 'i' ) || regex (?directed_by, '" + keyword +"', 'i') || regex (?cast, '" + keyword +"', 'i') || regex (?listed_in, '" + keyword +"', 'i'))}"
         query_base = query_base + aux
 
         list= []
+        res = self.graphDB.getResults(query_base)
+        for i in res:
+            dic = {}
+            dic['type'] = i['type']['value']
+            dic['title'] = i['title']['value']
+            dic['directed_by'] = i['directed_by']['value']
+            dic['cast'] = i['cast']['value']
+            dic['country'] = i['country']['value']
+            dic['date_added'] = i['date_added']['value']
+            dic['release_year'] = i['release_year']['value']
+            dic['duration'] = i['duration']['value']
+            dic['listed_in'] = i['listed_in']['value']
+            list.append(dic)
+        return list
+    def search_year(self, year1, year2):
+        query_base = "PREFIX net:<http://netflix-titles.com/pred/> Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in where{ ?film net:type ?type . ?film net:title ?title . ?film net:directed_by ?directed_by . ?film net:cast ?cast . ?film net:country ?country . ?film net:date_added ?date_added . ?film net:release_year ?release_year . ?film net:duration ?duration . ?film net:listed_in ?listed_in . filter(?release_year >= '"+ year1 +"' && ?release_year <='"+ year2 +"' )}"
+        list = []
         res = self.graphDB.getResults(query_base)
         for i in res:
             dic = {}

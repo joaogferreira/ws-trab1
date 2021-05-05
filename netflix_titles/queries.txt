@@ -166,3 +166,52 @@ delete data {
        net:directed_by "FM";
 	   net:cast "FM" .
 }
+
+#Editar campos
+PREFIX net: <http://netflix-titles.com/pred/>
+PREFIX n: <http://netflix-titles.com/>
+
+DELETE {
+   n:S99999999 net:title "Web Semantica" .
+ }
+INSERT {
+   n:S99999999 net:title "Web Semantica1" .
+}
+WHERE {
+   n:S99999999 net:title "Web Semantica" .
+}
+
+#Pesquisa filme por ano
+PREFIX net:<http://netflix-titles.com/pred/>
+
+Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in
+	where{
+		?film net:type ?type .
+		?film net:title ?title .
+		?film net:directed_by ?directed_by .
+		?film net:cast ?cast .
+		?film net:country ?country .
+		?film net:date_added ?date_added .
+		?film net:release_year "1944" .
+		?film net:duration ?duration .
+		?film net:listed_in ?listed_in .
+	}
+
+
+#Pesquisa filmes entre dois anos
+
+PREFIX net:<http://netflix-titles.com/pred/>
+
+Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in
+	where{
+		?film net:type ?type .
+		?film net:title ?title .
+        ?film net:directed_by ?directed_by .
+        ?film net:cast ?cast .
+        ?film net:country ?country .
+        ?film net:date_added ?date_added .
+        ?film net:release_year ?release_year .
+        ?film net:duration ?duration .
+        ?film net:listed_in ?listed_in .
+        filter(?release_year >= "2019" && ?release_year <="2021" )
+	}
