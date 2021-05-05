@@ -47,7 +47,7 @@ def movies(request):
         aux = {'title': moviesInfo[i].get('title'), 'director': moviesInfo[i].get('directed_by'),
                'release_year': moviesInfo[i].get('release_year'), 'listed_in': moviesInfo[i].get('listed_in'),
                'cast': moviesInfo[i].get('cast'), 'duration': moviesInfo[i].get('duration')}
-        
+
         tparams['movies'].append(aux)
 
     return render(request, 'movies.html', tparams)
