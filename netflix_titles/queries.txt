@@ -122,3 +122,47 @@ Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year 
         ?film net:listed_in ?listed_in .
     filter (regex (?title, 'la casa', 'i') || regex(?directed_by, 'la casa', 'i') || regex (?cast, 'la casa', 'i') || regex(?listed_in, 'la casa', 'i'))
 	}
+
+#add film
+
+prefix n:<http://netflix-titles.com/>
+PREFIX net:<http://netflix-titles.com/pred/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+Insert data{
+    n: net:type "Movie";
+       net:title "FM";
+       net:directed_by "FM";
+	   net:cast "FM";
+	   net:country "FM";
+       net:date_added "FM";
+	   net:release_year "FM";
+	   net:duration "FM";
+	   net:listed_in "FM".
+}
+
+PREFIX net:<http://netflix-titles.com/pred/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+Insert data{
+       net: net:  "Movie"^^xsd:string ;
+       net:title "Web Semantica"^^xsd:string;
+       net:directed_by "FM"^^xsd:string;
+	   net:cast "FM"^^xsd:string;
+	   net:country "FM"^^xsd:string;
+       net:date_added "FM"^^xsd:string;
+	   net:release_year "FM"^^xsd:string;
+	   net:duration "FM"^^xsd:string;
+	   net:listed_in "FM"^^xsd:string .
+}
+
+
+#delete data
+prefix n:<http://netflix-titles.com/>
+PREFIX net:<http://netflix-titles.com/pred/>
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+
+delete data {
+    n: net:title "FM";
+       net:directed_by "FM";
+	   net:cast "FM" .
+}

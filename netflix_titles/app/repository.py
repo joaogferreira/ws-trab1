@@ -137,6 +137,11 @@ class Repository:
             list.append(dic)
         return list
 
+    def addTitle(self, id, type, title, directed_by, cast, country, date_added, release_year, duration, listed_in ):
+        query = "PREFIX net:<http://netflix-titles.com/pred/> Insert data{ net:"+id+" net:type '"+ type +"'^^xsd:string; net:title '"+ title + "'^^xsd:string; net:directed_by '"+ directed_by +"'^^xsd:string; net:cast '"+ cast +"'^^xsd:string; net:country '"+ country +"'^^xsd:string; net:date_added '"+ date_added +"'^^xsd:string; net:release_year '"+ release_year +"'^^xsd:string; net:duration '"+ duration +"'^^xsd:string; net:listed_in '"+ listed_in +"'^^xsd:string. }"
+        #print(query)
+        return self.graphDB.add(query)
+
     def __init__(self, repo_name, endpoint):
         self.graphDB = GraphDB(endpoint, repo_name)
 

@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 import requests
+import random
+import string
 
 from app.repository import Repository
 
@@ -85,6 +87,7 @@ def add(request):
     assert isinstance(request, HttpRequest)
 
     if request.method == 'POST':
+
         type = request.POST['type']
         title = request.POST['title']
         directed = request.POST['directed_by']
@@ -95,6 +98,9 @@ def add(request):
         duration = request.POST['duration']
         listed_in = request.POST['listed_in']
 
-    else:
-        print('B')
+        letters = string.ascii_lowercase
+        id = (''.join(random.choice(letters) for i in range(10)))
+
+        results = repository.addTitle(id, type, title, directed, cast, country, date, release, duration, listed_in)
+
     return render(request, 'add.html', {'base': 'base.html'})
