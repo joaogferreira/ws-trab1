@@ -138,7 +138,7 @@ class Repository:
             list.append(dic)
         return list
     def search_year(self, year1, year2):
-        query_base = "PREFIX net:<http://netflix-titles.com/pred/> Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in where{ ?film net:type ?type . ?film net:title ?title . ?film net:directed_by ?directed_by . ?film net:cast ?cast . ?film net:country ?country . ?film net:date_added ?date_added . ?film net:release_year ?release_year . ?film net:duration ?duration . ?film net:listed_in ?listed_in . filter(?release_year >= '"+ year1 +"' && ?release_year <='"+ year2 +"' )}"
+        query_base = "PREFIX net:<http://netflix-titles.com/pred/> Select ?film ?type ?title ?directed_by ?cast ?country ?date_added ?release_year ?duration ?listed_in where{ ?film net:type ?type . ?film net:title ?title . ?film net:directed_by ?directed_by . ?film net:cast ?cast . ?film net:country ?country . ?film net:date_added ?date_added . ?film net:release_year ?release_year . ?film net:duration ?duration . ?film net:listed_in ?listed_in . filter(?release_year >= '"+ year1 +"' && ?release_year <='"+ year2 +"' )} order by asc (?release_year)"
         list = []
         res = self.graphDB.getResults(query_base)
         for i in res:
