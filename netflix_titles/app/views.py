@@ -118,6 +118,8 @@ def search_by_release_year(request):
 
 
         if from_year and to and from_year.isnumeric() and to.isnumeric():
+            if from_year > to:
+                return render(request, 'year.html',   {'error':True, 'base':'base.html'})
             results = repository.search_year(from_year,to)
 
             return render(request, 'year_results.html', {'from': from_year, 'to': to, 'base': 'base.html', 'results': results, 'nResults': len(results)})
